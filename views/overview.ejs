@@ -1,0 +1,234 @@
+<!-- Announcment -->
+<div class="announcment">
+  <% if(announces) { announces.map(announce=> { %>
+  <div class="announce">
+    <%= announce.announceText %>
+    <span class="material-icons delete_announce">close</span>
+  </div>
+  <% } ) }%>
+</div>
+<!-- hero section -->
+<div class="mt-3 my-1 border">
+  <div class="row">
+    <% if(banners[0]){ %>
+    <div
+      style="background-image: url(/img/banners/<%=banners[0].slide%>)"
+      class="col-8 hero__image_one"
+    >
+      <a href="<%= banners[0].link %>"> </a>
+    </div>
+    <% } %>
+    <!--  -->
+    <div class="col-4">
+      <div class="row flex-column">
+        <% if(banners[1]){ %>
+        <div
+          style="background-image: url('/img/banners/<%=banners[1].slide%>')"
+          class="col-12 hero__image_two"
+        >
+          <a href="<%= banners[1].link %>">
+            <div style="width: 100%; height: 100%"></div>
+          </a>
+        </div>
+        <% } %>
+        <!--  -->
+        <% if(banners[2]){ %>
+
+        <div
+          style="background-image: url('/img/banners/<%=banners[2].slide%>')"
+          class="col-12 hero__image_three"
+        >
+          <a href="<%= banners[2].link %>">
+            <div style="width: 100%; height: 100%"></div>
+          </a>
+        </div>
+
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="container-fluid mt-5">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="text-center"><%= __('our_interest') %></h2>
+    </div>
+    <div class="row align-items-center justify-content-center">
+      <% if(categories) { categories.map(category => { %>
+      <div class="col-4 col-md-2">
+        <a class="category__link" href="/categories/<%= category.id %>">
+          <div class="category">
+            <img
+              class="categoryimg"
+              src="/img/category/<%= category.categoryImage %>"
+              alt="<%= category.name %>"
+            />
+          </div>
+
+          <div class="category__overlay text-center">
+            <span class="category__name text-center">
+              <%= category.name %></span
+            >
+          </div>
+        </a>
+      </div>
+      <% })} %>
+    </div>
+  </div>
+</section>
+
+<div style="margin-top: 50px;"></div>
+
+
+<section>
+  <div class="container-fluid">
+    <div class="d-flex align-items-center justify-content-between">
+      <h2 class="section__title"><%= __('our_best_items') %></h2>
+      <a href="#" class="all__prod"> <%= __('see_all') %> </a>
+    </div>
+    <div class="row align-items-center justify-content-center">
+      <% if(products){ products.map(product=> { %>
+      <div class="col-4 col-md-2">
+        <a href="/product/<%= product.id %>">
+        <div class="product__container text-center">
+          <div class="product__img__container">
+            <img
+             class="product__img"
+              src="/img/products/<%= product.images[0] %>"
+              alt="<%= product.name %>"
+            />
+          </div>
+          <div class="product__info">
+            <div class="product__name"><%= product.title %>
+            </div>
+            <p class="product__price">
+              <%= product.price %>
+              <span class="product__currency">$</span>
+            </p>
+
+            <% if(!locals.user ) { %>
+              <a class="fav__button" href="/login">
+                <span class="material-icons"> favorite </span>
+              </a>
+              <% } else { %> <% if(product.favourit.length > 0) {product.favourit.map(
+              (f) => { if (JSON.stringify(f.user) === JSON.stringify(user.id) ){ %>
+              <a class="fav__button delete_fav" href="#" data-fav="<%= f.id %>">
+                <span class="material-icons" style="color: #47c5fb"> favorite </span>
+              </a>
+              <% }else { %>
+              <a class="fav__button delete_fav" href="#" data-fav="<%= f.id %>">
+                <span class="material-icons" style="color: #47c5fb"> favorite </span>
+              </a>
+              <% }}) } else{ %>
+              <a
+                class="fav__button add_fav"
+                href="#"
+                data-user="<%= user.id %>"
+                data-product="<%= product.id %>"
+              >
+                <span class="material-icons"> favorite </span>
+              </a>
+              <% } %> <% } %>
+
+          </div>
+        </div>
+      </a>
+
+      </div>
+      <% })} %>
+
+
+    </div>
+  </div>
+</section>
+
+<div style="margin-top: 50px;"></div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-6 img__container">
+      <img class="web__img" src="/assets/middlebg.jpg" alt="" />
+      </div>
+    <div class="col-12 col-md-6 text-center d-flex flex-column justify-content-center">
+      <h2 class="persctripton__decs--title"><%= __('our_ways_title') %></h2>
+      <p class="persctripton__decs--body">
+        <%= __('about_parag2') %> <%= __('about_parag3') %> <%=
+        __('about_parag4') %> <%= __('about_parag5') %> <%= __('about_parag6')
+        %>... <a href="/about" style="color: #47c5fb">more</a>
+      </p>
+    </div>
+  </div>  
+</div>
+
+<div style="margin-top: 50px;"></div>
+
+<section class="feature__section p-4">
+  <h2><%= __('shop_now') %></h2>
+  <h3><%= __('shop_now_title') %></h3>
+  
+  <div>
+
+    <div class="d-flex align-items-center mb-5">
+      <div style="width: 60px;">
+        <img src="/assets/return.png" class="feature__icon" />
+      </div>
+      <span class="feature__title h5 ms-3"> <%= __('return_delaie') %> </span>
+    </div>
+
+    <div class="d-flex align-items-center mb-5">
+      <div style="width: 60px;">
+        <img src="/assets/guarantee.png" class="feature__icon" />
+      </div>
+      <span class="feature__title h5 ms-3"> <%= __('warranty') %> </span>
+    </div>
+
+
+
+    <div class="d-flex align-items-center mb-5">
+      <div style="width: 60px;">
+        <img src="/assets/shipping.png" class="feature__icon" />
+      </div>
+      <span class="feature__title h5 ms-3"> <%= __('shipping') %> </span>
+    </div>
+  </div>
+  </section>
+
+  <div style="margin-top: 50px;"></div>
+
+<section class="container">
+  <div class="row text-center">
+  <h1><%= __('journey') %></h1>
+    
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-6 img__container">
+  <img class="journey__img" src="/assets/bgkids.jpg" alt="" />
+
+    </div>  
+    <div class="col-12 col-md-6 img__container">
+  <img class="journey__img" src="/assets/midbg.jpg" alt="" />
+
+    </div>  
+  </div>
+</section>
+
+
+<script src="/js/splide-extension-auto-scroll.min.js"></script>
+<script>
+  const announceContainer = document.querySelector(".announcment");
+  if (announceContainer.innerHTML.trim() !== "") {
+    setTimeout(() => {
+      announceContainer.classList.add("active_announce");
+    }, 3000);
+  }
+  const closeAnnounce = document.querySelectorAll(".delete_announce");
+
+  if (closeAnnounce) {
+    closeAnnounce.forEach((c) => {
+      c.addEventListener("click", function (e) {
+        e.target.parentElement.remove();
+      });
+    });
+  }
+</script>

@@ -1,0 +1,6 @@
+.home-header-style {
+  background-color: none;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}

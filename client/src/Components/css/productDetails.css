@@ -1,0 +1,19 @@
+.product-details-selected-img {
+  transition: all 0.3s ease-in-out;
+}
+.pd-all-images {
+  transition: all 0.3s ease-in-out;
+}
+.pd-all-image-container {
+  cursor: pointer;
+}
+.pd-all-image-container:hover .pd-div-1 {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
