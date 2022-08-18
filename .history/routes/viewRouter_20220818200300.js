@@ -9,10 +9,9 @@ router.use(viewsController.cart);
 router.use(viewsController.pages);
 router.use(authController.isLoggedIn);
 
-  // router.get('/', viewsController.getOverview);
+// router.get('/', viewsController.getOverview);
 
-
-router.get('/admin-login', viewsController.getLoginForm);
+// router.get('/login', viewsController.getLoginForm);
 // router.get('/page/:id', viewsController.getPage);
 // router.get('/collections/:col', viewsController.getBycollection);
 

@@ -169,7 +169,7 @@ if (process.env.NODE_ENV === 'production') {
     )
   })
 } else {
-  app.get("/", (req, res, next) => {
+  router.get("/", (req, res, next) => {
     res.json("MS Optics");
   })
 
