@@ -1,6 +1,8 @@
+import React from "react";
 import axios from "axios";
 
 const PayButton = ({ cart, user }) => {
+	const [loading, setLoading] = React.useState(false);
 	const handleCheckout = () => {
 		const token = JSON.parse(localStorage.getItem("token"));
 
@@ -10,12 +12,15 @@ const PayButton = ({ cart, user }) => {
 				Authorization: `Bearer ${token}`,
 			},
 		};
+		setLoading(true);
+		debugger;
+
 		axios
 			.post(
 				`${process.env.REACT_APP_SERVER_URL}/api/orders/checkout-session`,
 				{
 					cart,
-					userId: user._id,
+					user,
 				},
 				config
 			)
@@ -25,6 +30,7 @@ const PayButton = ({ cart, user }) => {
 				}
 			})
 			.catch((err) => console.log(err.message));
+		setLoading(false);
 	};
 
 	return (
@@ -34,7 +40,15 @@ const PayButton = ({ cart, user }) => {
 					type="button"
 					class="btn btn-primary mt-3"
 					onClick={() => handleCheckout()}
+					disabled={loading}
 				>
+					{loading && (
+						<span
+							class="spinner-border spinner-border-sm"
+							role="status"
+							aria-hidden="true"
+						></span>
+					)}
 					Check out
 				</button>
 			)}
