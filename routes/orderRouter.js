@@ -6,7 +6,8 @@ const router = express.Router();
 
 router.use(authController.protect);
 
-router.get('/checkout-session', orderController.getCheckoutSession);
+// router.get('/checkout-session', orderController.getCheckoutSession);
+router.post("/checkout-session", orderController.checkoutSession);
 
 // router.get('/createorder', orderController.createOrderCheckout);
 

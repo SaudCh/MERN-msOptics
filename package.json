@@ -8,7 +8,8 @@
     "dev": "nodemon server.js",
     "prod": "NODE_ENV=production nodemon server.js",
     "watch:js": "parcel watch ./public/js/index.js --out-dir  ./public/js -o bundle.js",
-    "build:js": "parcel build ./public/js/index.js --out-dir  ./public/js -o bundle.js "
+    "build:js": "parcel build ./public/js/index.js --out-dir  ./public/js -o bundle.js ",
+    "debug":"ndb server.js"
   },
   "author": "hamza belghazi",
   "license": "ISC",
@@ -43,7 +44,7 @@
     "sharp": "^0.29.0",
     "slugify": "^1.6.0",
     "socket.io": "^4.2.0",
-    "stripe": "^8.179.0",
+    "stripe": "^10.2.0",
     "validator": "^13.7.0",
     "xss-advanced": "^1.0.2",
     "xss-clean": "^0.1.1"
