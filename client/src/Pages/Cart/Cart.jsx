@@ -1,16 +1,20 @@
 import React, { useContext } from 'react';
 import { CartContext } from '../../Components/Context/CartContext';
+import { AuthContext } from '../../Components/Context/AuthContext';
 import {
   DecrementIcon,
   IncrementIcon,
   TrashIcon,
 } from '../../Components/icons';
+import PayButton from '../../Components/PayButton';
 import { formatCurrency } from '../../Components/utils/currencyFormater';
 
 export default function Cart() {
   document.title = 'Cart';
   const { cart, removeAll, removeItem, total, IncQuantity, DecQuantity } =
     useContext(CartContext);
+  const { user } =
+    useContext(AuthContext);
 
   if (cart.length === 0) {
     return (
@@ -112,6 +116,9 @@ export default function Cart() {
               <p className="p-0 m-0">{formatCurrency(total)}</p>
             </div>
           </div>
+            <div className="d-flex justify-content-between">
+              <PayButton cart={cart} user={user}/>
+            </div>
         </div>
       </div>
     </section>

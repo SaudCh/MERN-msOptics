@@ -19,43 +19,56 @@ const Type = lazy(() => import('../Pages/Type/Type'));
 const NotFound = lazy(() => import('../Pages/NotFound/NotFound'));
 const ForgetPassword = lazy(() => import('../Pages/ForgetPassword/ForgetPassword'));
 const Login = lazy(() => import('../Pages/Login/login'));
+const CheckoutSuccess = lazy(() => import('../Pages/Checkout/Success'));
 const Register = lazy(() => import('../Pages/Register/Register'));
 
 
 export default function index() {
   return (
-    <Suspense fallback={<Loading />}>
-      <div>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/" element={<Layout />} >
-            <Route path='/t/:type' element={<Type />} />
-            <Route path='/product/:id' element={<ProductDetails />} />
-            <Route path='/category/:id' element={<Category />} />
-            <Route path='/cart' element={<Cart />} />
+		<Suspense fallback={<Loading />}>
+			<div>
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="/" element={<Layout />}>
+						<Route path="/t/:type" element={<Type />} />
+						<Route path="/product/:id" element={<ProductDetails />} />
+						<Route path="/category/:id" element={<Category />} />
+						<Route path="/cart" element={<Cart />} />
 
-            {/* Auth Route */}
-            <Route path='/login' element={<AuthRoute component={<Login />} />} />
-            <Route path='/forgotpassword' element={<AuthRoute component={<ForgetPassword />} />} />
-            <Route path='/register' element={<AuthRoute component={<Register />} />} />
+						{/* Auth Route */}
+						<Route
+							path="/login"
+							element={<AuthRoute component={<Login />} />}
+						/>
+						<Route
+							path="/checkout-success"
+							element={<AuthRoute component={<CheckoutSuccess />} />}
+						/>
+						<Route
+							path="/forgotpassword"
+							element={<AuthRoute component={<ForgetPassword />} />}
+						/>
+						<Route
+							path="/register"
+							element={<AuthRoute component={<Register />} />}
+						/>
+					</Route>
 
-          </Route>
+					<Route path="/" element={<SideBarLayout />}>
+						<Route path="/wishlist" element={<Wishlist />} />
+						<Route
+							path="/account"
+							element={<ProtectedRoute component={<Account />} />}
+						/>
+						<Route path="/order-history" element={<OrderHistory />} />
+					</Route>
 
-          <Route path="/" element={<SideBarLayout />} >
-            <Route path="/wishlist" element={<Wishlist />} />
-            <Route path="/account" element={<ProtectedRoute component={<Account />} />} />
-            <Route path="/order-history" element={<OrderHistory />} />
-
-          </Route>
-
-          {/* If none Found */}
-          <Route path="/" element={<Layout />} >
-            <Route path="*" element={<NotFound />} />
-
-          </Route>
-
-        </Routes>
-      </div>
-    </Suspense>
-  );
+					{/* If none Found */}
+					<Route path="/" element={<Layout />}>
+						<Route path="*" element={<NotFound />} />
+					</Route>
+				</Routes>
+			</div>
+		</Suspense>
+	);
 }
