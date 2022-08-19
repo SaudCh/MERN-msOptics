@@ -2,6 +2,7 @@ const express = require('express');
 const viewsController = require('../controllers/viewsController');
 const authController = require('../controllers/authController');
 const orderController = require('../controllers/orderController');
+const app = express()
 
 const router = express.Router();
 
@@ -9,31 +10,51 @@ router.use(viewsController.cart);
 router.use(viewsController.pages);
 router.use(authController.isLoggedIn);
 
-  // router.get('/', viewsController.getOverview);
+// client side
+if (process.env.NODE_ENV === 'production') {
 
+  app.use(express.static(path.join(__dirname, "/client/build")))
 
-router.get('/admin-login', viewsController.getLoginForm);
-// router.get('/page/:id', viewsController.getPage);
-// router.get('/collections/:col', viewsController.getBycollection);
+  app.get('/', function (req, res) {
+    res.sendFile(
+      path.resolve(__dirname, "/client/build/index.html"),
+      function (err) {
+        if (err) {
+          res.status(500).send(err);
+        }
+      }
+    )
+  })
+} else {
+  router.get("/", (req, res, next) => {
+    res.json("Online HRMS");
+  })
+  router.get('/', viewsController.getOverview);
 
-// router.get('/forggotPassword', viewsController.forggetPass);
+}
 
-// router.get('/register', viewsController.getRegisterForm);
+router.get('/login', viewsController.getLoginForm);
+router.get('/page/:id', viewsController.getPage);
+router.get('/collections/:col', viewsController.getBycollection);
 
-// router.get('/users/resetPassword/:token', viewsController.passChange);
-// router.get('/search', viewsController.getSearch);
-// router.get('/products', viewsController.getProducts);
-// router.get('/product/:productId', viewsController.getSingleProduct);
-// router.get('/lense/:productId', viewsController.getLense);
-// router.get('/cart', viewsController.getCart);
-// router.get('/success', viewsController.success);
-// router.get('/contact', viewsController.contact);
-// router.get('/returns', viewsController.returns);
-// router.get('/garantee', viewsController.garantee);
-// router.get('/shipping', viewsController.shipping);
-// router.get('/about', viewsController.aboutUs);
+router.get('/forggotPassword', viewsController.forggetPass);
 
-// router.get('/account', viewsController.getAccount);
+router.get('/register', viewsController.getRegisterForm);
+
+router.get('/users/resetPassword/:token', viewsController.passChange);
+router.get('/search', viewsController.getSearch);
+router.get('/products', viewsController.getProducts);
+router.get('/product/:productId', viewsController.getSingleProduct);
+router.get('/lense/:productId', viewsController.getLense);
+router.get('/cart', viewsController.getCart);
+router.get('/success', viewsController.success);
+router.get('/contact', viewsController.contact);
+router.get('/returns', viewsController.returns);
+router.get('/garantee', viewsController.garantee);
+router.get('/shipping', viewsController.shipping);
+router.get('/about', viewsController.aboutUs);
+
+router.get('/account', viewsController.getAccount);
 
 router.get(
   '/admin',

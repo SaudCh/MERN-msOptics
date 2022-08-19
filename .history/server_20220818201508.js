@@ -169,8 +169,8 @@ if (process.env.NODE_ENV === 'production') {
     )
   })
 } else {
-  app.get("/", (req, res, next) => {
-    res.json("MS Optics");
+  router.get("/", (req, res, next) => {
+    res.json("Online HRMS");
   })
 
 }

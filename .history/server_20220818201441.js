@@ -154,7 +154,7 @@ app.set('layout admin-products-setting', false);
 app.use('/', viewRouter);
 
 // client side
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV !== 'production') {
 
   app.use(express.static(path.join(__dirname, "/client/build")))
 
@@ -169,8 +169,8 @@ if (process.env.NODE_ENV === 'production') {
     )
   })
 } else {
-  app.get("/", (req, res, next) => {
-    res.json("MS Optics");
+  router.get("/", (req, res, next) => {
+    res.json("Online HRMS");
   })
 
 }

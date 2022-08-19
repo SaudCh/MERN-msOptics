@@ -9,10 +9,10 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
-    <!-- <link
+    <link
       rel="stylesheet"
-      href="/node_modules/bootstrap/dist/css/bootstrap-reboot.min.css"
-    /> -->
+      href="../node_modules/bootstrap/dist/css/bootstrap-reboot.min.css"
+    />
     <source src="/js/bootstrap.min.js"></source>
     <link rel="stylesheet" href="/css/splide.min.css" />
     <link rel="stylesheet" href="/css/style.css" />
@@ -28,6 +28,7 @@
         <div class="loader"></div>
       </div>
       <!-- header -->
+      <%- include('partials/header'); %>
 
       <!-- main -->
 
@@ -35,6 +36,7 @@
 
       <!-- footer -->
 
+      <%- include('partials/footer'); %>
     </main>
     <script src="https://js.stripe.com/v3/"></script>
     <script src="/js/splide.min.js"></script>

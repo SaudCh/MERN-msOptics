@@ -153,28 +153,6 @@ app.set('layout admin-products-setting', false);
 // 3) ROUTES
 app.use('/', viewRouter);
 
-// client side
-if (process.env.NODE_ENV === 'production') {
-
-  app.use(express.static(path.join(__dirname, "/client/build")))
-
-  app.get('/', function (req, res) {
-    res.sendFile(
-      path.resolve(__dirname, "/client/build/index.html"),
-      function (err) {
-        if (err) {
-          res.status(500).send(err);
-        }
-      }
-    )
-  })
-} else {
-  app.get("/", (req, res, next) => {
-    res.json("MS Optics");
-  })
-
-}
-
 app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
 app.use('/api/lenses', lensRouter);

@@ -9,31 +9,30 @@ router.use(viewsController.cart);
 router.use(viewsController.pages);
 router.use(authController.isLoggedIn);
 
-  // router.get('/', viewsController.getOverview);
+router.get('/', viewsController.getOverview);
 
+router.get('/login', viewsController.getLoginForm);
+router.get('/page/:id', viewsController.getPage);
+router.get('/collections/:col', viewsController.getBycollection);
 
-router.get('/admin-login', viewsController.getLoginForm);
-// router.get('/page/:id', viewsController.getPage);
-// router.get('/collections/:col', viewsController.getBycollection);
+router.get('/forggotPassword', viewsController.forggetPass);
 
-// router.get('/forggotPassword', viewsController.forggetPass);
+router.get('/register', viewsController.getRegisterForm);
 
-// router.get('/register', viewsController.getRegisterForm);
+router.get('/users/resetPassword/:token', viewsController.passChange);
+router.get('/search', viewsController.getSearch);
+router.get('/products', viewsController.getProducts);
+router.get('/product/:productId', viewsController.getSingleProduct);
+router.get('/lense/:productId', viewsController.getLense);
+router.get('/cart', viewsController.getCart);
+router.get('/success', viewsController.success);
+router.get('/contact', viewsController.contact);
+router.get('/returns', viewsController.returns);
+router.get('/garantee', viewsController.garantee);
+router.get('/shipping', viewsController.shipping);
+router.get('/about', viewsController.aboutUs);
 
-// router.get('/users/resetPassword/:token', viewsController.passChange);
-// router.get('/search', viewsController.getSearch);
-// router.get('/products', viewsController.getProducts);
-// router.get('/product/:productId', viewsController.getSingleProduct);
-// router.get('/lense/:productId', viewsController.getLense);
-// router.get('/cart', viewsController.getCart);
-// router.get('/success', viewsController.success);
-// router.get('/contact', viewsController.contact);
-// router.get('/returns', viewsController.returns);
-// router.get('/garantee', viewsController.garantee);
-// router.get('/shipping', viewsController.shipping);
-// router.get('/about', viewsController.aboutUs);
-
-// router.get('/account', viewsController.getAccount);
+router.get('/account', viewsController.getAccount);
 
 router.get(
   '/admin',
