@@ -40,6 +40,33 @@ export const useWishlist = () => {
         await axios.delete(`${process.env.REACT_APP_SERVER_URL}/api/favourite/deleteFa/${id}/${user.user.id}`, config)
     }
 
+    const clearWishlist = () => {
+        setWishlist([])
+        console.log("je")
+    }
+
+    const getWishlist = async () => {
+        const user = JSON.parse(localStorage.getItem('userData'))
+        const token = JSON.parse(localStorage.getItem('token'))
+
+        const config = {
+            headers: { Authorization: `Bearer ${token}` },
+        };
+
+        await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/favourite/${user?.user.id}`, config).then(function (response) {
+            setWishlist(response.data.data.favourit);
+        })
+            .catch(function (error) {
+                const err = {};
+                err.api = error.response.data?.message
+                    ? error.response.data.message
+                    : error.message;
+
+                console.log(err)
+            });
+
+    }
+
     useEffect(() => {
 
         const user = JSON.parse(localStorage.getItem('userData'))
@@ -68,5 +95,5 @@ export const useWishlist = () => {
         getWishlist(user, token);
     }, [])
 
-    return { wishlist, addToWishlist, removeFromWishlist }
+    return { wishlist, addToWishlist, removeFromWishlist, clearWishlist, getWishlist }
 }

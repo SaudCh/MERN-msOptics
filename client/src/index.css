@@ -48,6 +48,14 @@ img {
   list-style: none;
   padding: 0;
 }
+.link {
+  text-decoration: none;
+  color: #000;
+}
+.link:hover {
+  text-decoration: none;
+  color: #000;
+}
 .link-blue {
   color: #00aef9;
   text-decoration: none;

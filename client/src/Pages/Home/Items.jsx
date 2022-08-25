@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import 'pure-react-carousel/dist/react-carousel.es.css';
+import React, { useEffect, useState } from "react";
+import "pure-react-carousel/dist/react-carousel.es.css";
 import {
   CarouselProvider,
   Slider,
   Slide,
   ButtonBack,
   ButtonNext,
-} from 'pure-react-carousel';
-import ViewMoreCard from '../../Components/Home/ViewMoreCard';
-import useWindowDimensions from '../../Components/Hooks/useWindowDimensions';
-import { ChevronLeftIcon, ChevronRightIcon } from '../../Components/icons';
-import axios from 'axios';
-import SoloSlide from './Slide';
+} from "pure-react-carousel";
+import ViewMoreCard from "../../Components/Home/ViewMoreCard";
+import useWindowDimensions from "../../Components/Hooks/useWindowDimensions";
+import { ChevronLeftIcon, ChevronRightIcon } from "../../Components/icons";
+import axios from "axios";
+import SoloSlide from "./Slide";
+import { useTranslation } from "react-i18next";
 
 function Items() {
+  const { t } = useTranslation();
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -21,7 +23,7 @@ function Items() {
       await axios
         .get(`${process.env.REACT_APP_SERVER_URL}/api/products/`)
         .then(function (response) {
-          console.log(response.data.data.data);
+          // console.log(response.data.data.data);
           setItems(response.data.data.data);
         })
         .catch(function (error) {
@@ -43,7 +45,9 @@ function Items() {
     <section className="container-fluid mt-2">
       <div className="row justify-content-center position-relative">
         <div className="col-12 text-center">
-          <h1 style={{ fontSize: 30, fontWeight: 'bold' }}>Our Best Items</h1>
+          <h1 style={{ fontSize: 30, fontWeight: "bold" }}>
+            {t("our_best_items")}
+          </h1>
         </div>
         <CarouselProvider
           className="relative mt-8"
@@ -60,7 +64,7 @@ function Items() {
           <Slider>
             {items.map((item, index) => (
               <Slide key={index}>
-                <SoloSlide item={item}/>
+                <SoloSlide item={item} />
               </Slide>
             ))}
             <Slide className=" px-4" index={Math.random()}>

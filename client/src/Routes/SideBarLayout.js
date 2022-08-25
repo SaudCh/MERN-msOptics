@@ -1,9 +1,11 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link, Outlet } from 'react-router-dom';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 
 export default function SideBarLayout() {
+  const { t } = useTranslation();
   return (
     <div>
       <Header background={true} />
@@ -19,14 +21,14 @@ export default function SideBarLayout() {
                 className="btn m-0 side-bar-btn border-bottom py-2"
                 style={{ width: '100%' }}
               >
-                Account
+                {t("account")}
               </Link>
               <Link
                 to="/wishlist"
                 className="btn m-0 side-bar-btn border-bottom py-2"
                 style={{ width: '100%' }}
               >
-                Wishlist
+                {t("wishlist")}
               </Link>
               <Link
                 to="/order-history"
