@@ -1,19 +1,36 @@
+<<<<<<< HEAD
 import React, { useContext } from "react";
 import { CartContext } from "../../Components/Context/CartContext";
 import { AuthContext } from "../../Components/Context/AuthContext";
+=======
+import React, { useContext } from 'react';
+import { CartContext } from '../../Components/Context/CartContext';
+import { AuthContext } from '../../Components/Context/AuthContext';
+>>>>>>> a6189db390c8f63275f42ac9393c4aaba1cb54ef
 import {
   DecrementIcon,
   IncrementIcon,
   TrashIcon,
+<<<<<<< HEAD
 } from "../../Components/icons";
 import PayButton from "../../Components/PayButton";
 import { formatCurrency } from "../../Components/utils/currencyFormater";
+=======
+} from '../../Components/icons';
+import PayButton from '../../Components/PayButton';
+import { formatCurrency } from '../../Components/utils/currencyFormater';
+>>>>>>> a6189db390c8f63275f42ac9393c4aaba1cb54ef
 
 export default function Cart() {
   document.title = "Cart";
   const { cart, removeAll, removeItem, total, IncQuantity, DecQuantity } =
     useContext(CartContext);
+<<<<<<< HEAD
   const { user } = useContext(AuthContext);
+=======
+  const { user } =
+    useContext(AuthContext);
+>>>>>>> a6189db390c8f63275f42ac9393c4aaba1cb54ef
 
   if (cart.length === 0) {
     return (
@@ -121,6 +138,9 @@ export default function Cart() {
               <PayButton cart={cart} user={user} />
             </div>
           </div>
+            <div className="d-flex justify-content-between">
+              <PayButton cart={cart} user={user}/>
+            </div>
         </div>
       </div>
     </section>

@@ -38,10 +38,16 @@ const PayButton = ({ cart, user }) => {
 			{user?._id && (
 				<button
 					type="button"
+<<<<<<< HEAD
 					class="btn text-white mt-3 "
 					onClick={() => handleCheckout()}
 					disabled={loading}
 					style={{ backgroundColor: "#373B3C" }}
+=======
+					class="btn btn-primary mt-3"
+					onClick={() => handleCheckout()}
+					disabled={loading}
+>>>>>>> a6189db390c8f63275f42ac9393c4aaba1cb54ef
 				>
 					{loading && (
 						<span
@@ -57,4 +63,8 @@ const PayButton = ({ cart, user }) => {
 	);
 };
 
+<<<<<<< HEAD
 export default PayButton;
+=======
+export default PayButton;
+>>>>>>> a6189db390c8f63275f42ac9393c4aaba1cb54ef
